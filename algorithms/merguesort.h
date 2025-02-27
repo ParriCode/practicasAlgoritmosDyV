@@ -1,4 +1,3 @@
-
 /**
  * @file merguesort.c
  * @author Jose Luis Parrilla Fuentes (theparri@protonmail.com)
@@ -45,4 +44,4 @@ void merge(int v[], int u[], int n, int m);
 void mergesort(int v[], int a , int b);
 
 
-#endif 
+#endif

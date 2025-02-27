@@ -9,6 +9,8 @@
  * @copyright Copyright (c) 2025
  * 
  */
+int n0_merguesort = 5000;
+
 #include <stdlib.h>
 /**
  * @brief Ordena un vector de enteros v de tamaño n mediante el algoritmo de inserción
@@ -68,7 +70,7 @@ void merge(int v[], int u[], int n, int m){
  * @param b 
  */
 void mergesort(int v[], int a , int b){
-    if((b-a) < 5000){
+    if((b-a) < n0_merguesort){
         insercion(v+a,b-a);
     }
     else{

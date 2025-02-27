@@ -42,8 +42,9 @@ void prueba_merguesort(int tamPrueba, int ciclos){
 
 void prueba_ternaria(int tam, int ciclos){
     printf("Se va a iniciar la prueba de busqueda ternaria\n");
-    int v[] = {1,2,3,45,3245,13451};
-    int pos = ternaria(v,6, 45);
+   // int v[] = {1,2,3,45,3245,13451};
+    int v[50] = {5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99, 101, 103};
+    int pos = ternaria(v,50, 103);
     printf("La posicion es %d\n", pos);
 
 }
