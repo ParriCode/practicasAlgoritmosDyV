@@ -10,7 +10,7 @@ set(CMAKE_C_STANDARD 23)
 # Define the source files for the project
 set(SOURCES
     main.c
-    algorithms/merguesort.c
+    algorithms/mergesort.c
     algorithms/ternaria.c
     disjoint/disjoint.c
   #  disjoint/prdisjoint.c
@@ -29,7 +29,7 @@ set(SOURCES
 
 # Define the header files for the project (not strictly needed for compilation but useful for IDEs)
 set(HEADERS
-    algorithms/merguesort.h
+    algorithms/mergesort.h
     algorithms/ternaria.h
     disjoint/disjoint.h
     fvector/fvector.h

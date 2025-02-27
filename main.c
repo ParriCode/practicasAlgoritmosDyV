@@ -2,10 +2,21 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "algorithms/merguesort.h"
+#include "algorithms/mergesort.h"
 #include "algorithms/ternaria.h"
 
-void prueba_merguesort(int tamPrueba, int ciclos){
+extern int n0_ternaria;
+extern int n0_mergesort;
+
+/**
+ * @brief Prueba de mergesort
+ * @param tamPrueba Tamaño de la prueba
+ * @param ciclos Número de ciclos
+ * @param umbral Umbral
+ */
+
+void prueba_merguesort(int tamPrueba, int ciclos, int umbral){
+    n0_mergesort = umbral;
     printf("Se va a iniciar la prueba mergue sort , "
         "Para mayor fiabilidad de la prueba se recomienda tener el ordenador en las mejores condiciones de rencimiento posible\n");
     printf("El tamaño de la prueba será de %d elementos \n", tamPrueba);
@@ -16,8 +27,9 @@ void prueba_merguesort(int tamPrueba, int ciclos){
         v[tamPrueba-i-1] = i; //Ponemos el vector invertido para estar siempre en el peor de los casos
     }
     double sumTiempos = 0; //Suma total de tiempos
-    FILE *fp;
-    fp = fopen("datos.csv", "w"); //Crear archivo de datos
+    char filename[100];
+    sprintf(filename, "mergesort_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
+    FILE *fp = fopen(filename, "w"); //Crear archivo de datos
     
     for(int i = 0; i < tamPrueba; ++i){ 
         clock_t start = clock();
@@ -40,19 +52,43 @@ void prueba_merguesort(int tamPrueba, int ciclos){
     printf("El tiempo ha sido de %f ", sumTiempos);
 }
 
-void prueba_ternaria(int tam, int ciclos){
-    printf("Se va a iniciar la prueba de busqueda ternaria\n");
-   // int v[] = {1,2,3,45,3245,13451};
-    int v[50] = {5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99, 101, 103};
-    int pos = ternaria(v,50, 103);
-    printf("La posicion es %d\n", pos);
 
+void prueba_ternaria(int tamPrueba, int ciclos, int umbral){
+    n0_ternaria = umbral;
+    printf("Se va a iniciar la prueba de busqueda ternaria\n");
+    printf("El tamaño de la prueba será de %d elementos \n", tamPrueba);
+    
+    int *v = (int*)malloc(tamPrueba * sizeof(int));
+    for(int i = 0; i < tamPrueba; ++i){
+        v[i] = i; // Vector ordenado para la búsqueda   
+    }
+    
+    double sumTiempos = 0;
+    char filename[100];
+    sprintf(filename, "ternaria_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
+    FILE *fp = fopen(filename, "w"); // Crear archivo de datos
+    
+    for(int i = 0; i < tamPrueba; ++i){
+        clock_t start = clock();
+        for(int j = 0; j < ciclos; ++j){
+            ternaria(v, tamPrueba, i);
+        }
+        clock_t end = clock();
+        double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+        sumTiempos += time_taken;
+        fprintf(fp, "%d,%f\n", i, time_taken); // Escribir archivo en formato CSV
+    }
+    fprintf(fp, "SUM,%f", sumTiempos);
+    fclose(fp);
+    
+    printf("El tiempo ha sido de %f ", sumTiempos);
 }
 
 int main(int argc , char *argv[]){
     int i = 0;
     int tam = 10000; // Tamaño de la prueb a
     int ciclos = 100; //ciclos que se repite la prueba
+    int umbral = 100000; // Umbral por defecto
     while(i < argc){
 
         if(strcmp(argv[i], "--help") == 0){ //ayuda
@@ -68,14 +104,16 @@ int main(int argc , char *argv[]){
             if( i< argc-1){
                 tam = atoi(argv[++i]);
                 if(i < argc-1) ciclos = atoi(argv[++i]);
+                if(i < argc-1) umbral = atoi(argv[++i]);
             }
-            prueba_merguesort(tam , ciclos);
+            prueba_merguesort(tam , ciclos, umbral);
         }else if(strcmp(argv[i], "--ternaria") == 0){
             if( i< argc-1){
                 tam = atoi(argv[++i]);
                 if(i < argc-1) ciclos = atoi(argv[++i]);
+                if(i < argc-1) umbral = atoi(argv[++i]);
             }
-            prueba_ternaria(tam , ciclos);
+            prueba_ternaria(tam , ciclos, umbral);
         }
 
         ++i; //incr iterador

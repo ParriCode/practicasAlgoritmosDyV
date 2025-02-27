@@ -1,4 +1,3 @@
-
 /**
  * @file merguesort.c
  * @author Jose Luis Parrilla Fuentes (theparri@protonmail.com)
@@ -10,7 +9,7 @@
  * 
  */
 
-int ternaria_n0 = 10;
+int n0_ternaria = 100000;
 
 
 /**
@@ -28,7 +27,7 @@ int ternaria_rec(int v[], int a, int b, int ele){
 
     if(v[a] == ele) return a;
     if(v[--b] == ele) return b;
-    if(b < ternaria_n0){
+    if(b < n0_ternaria){
         //Busqueda lineal una vez pasado el umbral
         for(int i= a; i< b;++i){
             if(v[i] == ele){return i;}
@@ -63,7 +62,7 @@ int ternaria_rec(int v[], int a, int b, int ele){
  */
 int ternaria(int v[] , int tam, int ele){
     if(ele >= v[0] && ele <= v[tam-1]){ //Comprobar que el elemento se cneutnra dentro del rango del vector
-        printf("El elemento se encuentra ene l rango\n");
+      //  printf("El elemento se encuentra ene l rango\n");
         return ternaria_rec(v, 0 , tam, ele); 
     }
     else return -1 ;
