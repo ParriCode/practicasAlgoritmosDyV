@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include "algorithms/merguesort.h"
+#include "algorithms/ternaria.h"
 
 void prueba_merguesort(int tamPrueba, int ciclos){
     printf("Se va a iniciar la prueba mergue sort , "
@@ -38,6 +39,15 @@ void prueba_merguesort(int tamPrueba, int ciclos){
 
     printf("El tiempo ha sido de %f ", sumTiempos);
 }
+
+void prueba_ternaria(int tam, int ciclos){
+    printf("Se va a iniciar la prueba de busqueda ternaria\n");
+    int v[] = {1,2,3,45,3245,13451};
+    int pos = ternaria(v,6, 45);
+    printf("La posicion es %d\n", pos);
+
+}
+
 int main(int argc , char *argv[]){
     int i = 0;
     int tam = 10000; // Tamaño de la prueb a
@@ -53,15 +63,23 @@ int main(int argc , char *argv[]){
         if(strcmp(argv[i], "--all") == 0){
             printf("Se van a ejecutar pruebas de todos los algoritmos");
         }
-        if(strcmp(argv[i] ,"--mergesort") == 0){
+        else if(strcmp(argv[i] ,"--mergesort") == 0){
             if( i< argc-1){
                 tam = atoi(argv[++i]);
                 if(i < argc-1) ciclos = atoi(argv[++i]);
             }
             prueba_merguesort(tam , ciclos);
+        }else if(strcmp(argv[i], "--ternaria") == 0){
+            if( i< argc-1){
+                tam = atoi(argv[++i]);
+                if(i < argc-1) ciclos = atoi(argv[++i]);
+            }
+            prueba_ternaria(tam , ciclos);
         }
+
         ++i; //incr iterador
     }
+    
     printf("Finiquitado\n");
     //prueba_merguesort(10000,100);
     return  0;

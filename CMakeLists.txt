@@ -11,6 +11,7 @@ set(CMAKE_C_STANDARD 23)
 set(SOURCES
     main.c
     algorithms/merguesort.c
+    algorithms/ternaria.c
     disjoint/disjoint.c
   #  disjoint/prdisjoint.c
     fvector/fvector.c
@@ -22,12 +23,14 @@ set(SOURCES
     ivector/ivector.c
    # ivector/prueba_ivector.c
     vdin/vdin.c
+
   #  vdin/prvdin.c
 )
 
 # Define the header files for the project (not strictly needed for compilation but useful for IDEs)
 set(HEADERS
     algorithms/merguesort.h
+    algorithms/ternaria.h
     disjoint/disjoint.h
     fvector/fvector.h
     heap_aristas/depuracion.h
