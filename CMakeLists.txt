@@ -12,6 +12,7 @@ set(SOURCES
     main.c
     algorithms/mergesort.c
     algorithms/ternaria.c
+    algorithms/moreset.c
     disjoint/disjoint.c
   #  disjoint/prdisjoint.c
     fvector/fvector.c
@@ -31,10 +32,12 @@ set(SOURCES
 set(HEADERS
     algorithms/mergesort.h
     algorithms/ternaria.h
+    algorithms/moreset.h
     disjoint/disjoint.h
     fvector/fvector.h
     heap_aristas/depuracion.h
     heap_aristas/heap_aristas.h
+
     imatriz2d/imatriz2d.h
     ivector/ivector.h
     vdin/vdin.h

@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2025
  * 
  */
-int n0_mergesort = 50000;
+int n0_mergesort = 64;
 
 #include <stdlib.h>
 /**
@@ -71,13 +71,13 @@ void merge(int v[], int u[], int n, int m){
  */
 void mergesort(int v[], int a , int b){
     if(a >= b) return;
-    if((b-a) < n0_mergesort){
+    if((b-a+1) < n0_mergesort){
         insercion(v+a,b-a);
     }
     else{
         int m = a+(b-a)/2; //Mitad del vector
         mergesort(v,a,m); //Desde v con m-n 
-        mergesort(v,m,b); //u coge desde principio hasta m
+        mergesort(v,m+1,b); //u coge desde principio hasta m
         merge(v+a,v+m,m-a,b-m); //mergue siempre recibe el puntero bien reservado
         }
 }

@@ -12,4 +12,8 @@
 #ifndef __MORESET_H__
 #define __MORESET_H__
 
+int moreset(unsigned int *arr, int a , int b);
+
+
+
 #endif

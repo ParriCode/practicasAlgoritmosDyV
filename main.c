@@ -4,6 +4,7 @@
 #include <string.h>
 #include "algorithms/mergesort.h"
 #include "algorithms/ternaria.h"
+#include "algorithms/moreset.h"
 
 extern int n0_ternaria;
 extern int n0_mergesort;
@@ -28,24 +29,24 @@ void prueba_merguesort(int tamPrueba, int ciclos, int umbral){
     }
     double sumTiempos = 0; //Suma total de tiempos
     char filename[100];
-    sprintf(filename, "mergesort_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
-    FILE *fp = fopen(filename, "w"); //Crear archivo de datos
+    sprintf(filename, "../datos/mergesort_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
+  //  FILE *fp = fopen(filename, "w"); //Crear archivo de datos
     
-    for(int i = 0; i < tamPrueba; ++i){ 
-        clock_t start = clock();
-        for(int j = 0; j < ciclos; ++j){
-            mergesort(v,0,i);
+   // for(int i = 0; i < tamPrueba; ++i){ 
+    clock_t start = clock();
+       // for(int j = 0; j < ciclos; ++j){
+    mergesort(v,0,tamPrueba-1);
 
-        }
+       // }
             // Finalizar tiempo
-        clock_t end = clock();
-        double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+    clock_t end = clock();
+    double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
   //      tiempos[i] = time_taken;
-        sumTiempos += time_taken;
-        fprintf(fp,"%d,%f\n",i, time_taken); //Escribir archivo en formato CSV
-    }   
-    fprintf(fp,"SUM,%f", sumTiempos);
-    fclose(fp);
+    sumTiempos += time_taken;
+       // fprintf(fp,"%d,%f\n",i, time_taken); //Escribir archivo en formato CSV
+   // }   
+   // fprintf(fp,"SUM,%f", sumTiempos);
+   // fclose(fp);
 
     // Calcular tiempo de ejecución en segundos
 
@@ -65,23 +66,56 @@ void prueba_ternaria(int tamPrueba, int ciclos, int umbral){
     
     double sumTiempos = 0;
     char filename[100];
-    sprintf(filename, "ternaria_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
-    FILE *fp = fopen(filename, "w"); // Crear archivo de datos
+  //  sprintf(filename, "../datos/ternaria_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
+   // FILE *fp = fopen(filename, "w"); // Crear archivo de datos
     
-    for(int i = 0; i < tamPrueba; ++i){
+   // for(int i = 0; i < tamPrueba; ++i){
+    clock_t start = clock();
+    //    for(int j = 0; j < ciclos; ++j){
+    ternaria(v, tamPrueba,tamPrueba/3 +3);
+     //   }
+        clock_t end = clock();
+    double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
+    sumTiempos += time_taken;
+   // fprintf(fp, "%d,%f\n", i, time_taken); // Escribir archivo en formato CSV
+   // }
+  //  fprintf(fp, "SUM,%f", sumTiempos);
+   // fclose(fp);
+    
+    printf("El tiempo ha sido de %f ", sumTiempos);
+}
+
+void prueba_moreset(int tamPrueba){
+    printf("Se va a iniciar la pru eba de moreset\n");
+    printf("Este algoritmo encuentra el elemento mayoritario el cual es estrictamente mayor que n/2\n");
+    printf("El tamaño de la prueba será de %d elementos \n", tamPrueba);
+    
+    unsigned int v[19] = {3, 3, 3, 3, 3, 3, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1};
+    
+    tamPrueba = 19;
+    double sumTiempos = 0;
+    char filename[100];
+   // sprintf(filename, "../datos/moreset_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
+    //FILE *fp = fopen(filename, "w"); // Crear archivo de datos
+    //FILE *fp = fopen(filename, "w"); // Crear archivo de datos
+    //FILE *fp = fopen(filename, "w"); // Crear archivo de datos
+    
+   // for(int i = 0; i < tamPrueba; ++i){
         clock_t start = clock();
-        for(int j = 0; j < ciclos; ++j){
-            ternaria(v, tamPrueba, i);
-        }
+   //     for(int j = 0; j < ciclos; ++j){
+        int elemento = moreset(v, 0,tamPrueba);
+        printf("Elemento buscado: %d\n", elemento);
+     //   }
         clock_t end = clock();
         double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
         sumTiempos += time_taken;
-        fprintf(fp, "%d,%f\n", i, time_taken); // Escribir archivo en formato CSV
-    }
-    fprintf(fp, "SUM,%f", sumTiempos);
-    fclose(fp);
+        
+        //fprintf(fp, "%d,%f\n", i, time_taken); // Escribir archivo en formato CSV
     
-    printf("El tiempo ha sido de %f ", sumTiempos);
+   // fprintf(fp, "SUM,%f", sumTiempos);
+   // fclose(fp);
+    
+   // printf("El tiempo ha sido de %f ", sumTiempos);
 }
 
 int main(int argc , char *argv[]){
@@ -114,6 +148,11 @@ int main(int argc , char *argv[]){
                 if(i < argc-1) umbral = atoi(argv[++i]);
             }
             prueba_ternaria(tam , ciclos, umbral);
+        }else if(strcmp(argv[i], "--moreset") == 0){
+            if( i< argc-1){
+                tam = atoi(argv[++i]);
+            }
+            prueba_moreset(tam);
         }
 
         ++i; //incr iterador
