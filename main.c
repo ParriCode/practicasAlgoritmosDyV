@@ -17,25 +17,28 @@ extern int n0_mergesort;
  */
 
 void prueba_merguesort(int tamPrueba, int ciclos, int umbral){
-    n0_mergesort = umbral;
+    n0_mergesort = 5;
     printf("Se va a iniciar la prueba mergue sort , "
         "Para mayor fiabilidad de la prueba se recomienda tener el ordenador en las mejores condiciones de rencimiento posible\n");
     printf("El tamaño de la prueba será de %d elementos \n", tamPrueba);
     // Ejecutar función a medirs
-    int *v = (int*)malloc(tamPrueba*sizeof(int)); //Almacenamos memoria suficiente
+    tamPrueba = 30;
+    int v[30] = {4,25,56,23,12,54,76,3,13,34,676,345,23,62,23,
+                 7,76,55,98,50,67,11,0,543,35,77,234,765,58,462};
+  //  int *v = (int*)malloc(tamPrueba*sizeof(int)); //Almacenamos memoria suficiente
    // double *tiempos = (float*)malloc(TAM_PRUEBA*sizeof(double));
-    for(int i = tamPrueba-1;i >= 0; --i){
-        v[tamPrueba-i-1] = i; //Ponemos el vector invertido para estar siempre en el peor de los casos
-    }
+   // for(int i = tamPrueba-1;i >= 0; --i){
+   //     v[tamPrueba-i-1] = i; //Ponemos el vector invertido para estar siempre en el peor de los casos
+   // }
     double sumTiempos = 0; //Suma total de tiempos
     char filename[100];
-    sprintf(filename, "../datos/mergesort_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
+   // sprintf(filename, "../datos/mergesort_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
   //  FILE *fp = fopen(filename, "w"); //Crear archivo de datos
     
    // for(int i = 0; i < tamPrueba; ++i){ 
     clock_t start = clock();
        // for(int j = 0; j < ciclos; ++j){
-    mergesort(v,0,tamPrueba-1);
+    mergesort(v,0,tamPrueba);
 
        // }
             // Finalizar tiempo
@@ -43,6 +46,9 @@ void prueba_merguesort(int tamPrueba, int ciclos, int umbral){
     double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
   //      tiempos[i] = time_taken;
     sumTiempos += time_taken;
+    for(int i = 0; i< tamPrueba; ++i){
+        printf("%d, ",v[i]);
+    }
        // fprintf(fp,"%d,%f\n",i, time_taken); //Escribir archivo en formato CSV
    // }   
    // fprintf(fp,"SUM,%f", sumTiempos);
@@ -90,9 +96,9 @@ void prueba_moreset(int tamPrueba){
     printf("Este algoritmo encuentra el elemento mayoritario el cual es estrictamente mayor que n/2\n");
     printf("El tamaño de la prueba será de %d elementos \n", tamPrueba);
     
-    unsigned int v[19] = {3, 3, 3, 3, 3, 3, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1};
+    unsigned int v[20] = {2, 2, 3, 2, 2, 2, 2, 3, 3, 2, 3, 1, 1, 2, 2, 2, 2, 1, 1,1};
     
-    tamPrueba = 19;
+    tamPrueba = 20;
     double sumTiempos = 0;
     char filename[100];
    // sprintf(filename, "../datos/moreset_%d_%d_%d.csv", tamPrueba, ciclos, umbral);
@@ -137,8 +143,8 @@ int main(int argc , char *argv[]){
         else if(strcmp(argv[i] ,"--mergesort") == 0){
             if( i< argc-1){
                 tam = atoi(argv[++i]);
-                if(i < argc-1) ciclos = atoi(argv[++i]);
-                if(i < argc-1) umbral = atoi(argv[++i]);
+        // #       if(i < argc-1) ciclos = atoi(argv[++i]);
+          //    if(i < argc-1) umbral = atoi(argv[++i]);
             }
             prueba_merguesort(tam , ciclos, umbral);
         }else if(strcmp(argv[i], "--ternaria") == 0){

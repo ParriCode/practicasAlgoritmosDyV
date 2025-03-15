@@ -44,8 +44,7 @@ set(HEADERS
 )
 
 # Add an executable target
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
-
+add_executable(${PROJECT_NAME} ${SOURCES})
 # If you want to specify certain compile flags, you can do that as well
 # For example:
 # target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra)
