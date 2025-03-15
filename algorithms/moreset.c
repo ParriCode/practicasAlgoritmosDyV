@@ -1,6 +1,6 @@
 #include "moreset.h"
 
-
+#include <stdio.h>
 /**
  * @brief Encontrar el elemento mayoritario de un conjunto 
  * @details El elemento mayoritario es el elemento que aparaece un número de veces estrictamente mayor que n/2 
@@ -10,20 +10,6 @@
  * @return elemento mayoritario del vector, -1 sino existe
  */
 int moreset(unsigned int *arr, int a , int b){
-    int el = moreset_recur( arr, a ,  b);
-    int c = 0;
-    if(el == -1){return -1;}
-    for(int i = a; i <  b; ++i){
-        if(arr[i] == el){++c;}
-    }
-    if(c > (b-a)/2){
-        return el;
-    }else{
-        return -1;
-    }
-}
-
-int moreset_recur(unsigned int *arr, int a , int b){
     if(b-a == 1){
     //    printf("%d arr: %u\n",c, arr[a]);
      //   ++c;
@@ -35,20 +21,23 @@ int moreset_recur(unsigned int *arr, int a , int b){
     int ele2 = moreset(arr,m, b );
     int contador1 = 0;
     int contador2 = 0;
-    
+    //Si son el mismo elemento entonces simplemente se devuelve sin comprobar
     if(ele1 == ele2) {return ele1;}
-    if(ele1 == -1){return ele2;}
-    else if(ele2 == -1){return ele1;} 
-    for(int i = a; i < b;++i){
+    for(int i = a; i < b;++i){ //Sino son el mismo elemento se cuentan ambos elementos y se ve cual es el mayor
         if(arr[i] == ele1){
             ++contador1;
-       //     if(contador1/2 > (b-a)/ 2){return contador1;} //Si ya es mayoritario devolver directamente
         }else if( arr [i] == ele2){
             ++contador2;
-   //         if(contador2 / 2 > (b-a)/2){return contador2;} //Si ya es mayoritario devolverlo directament
         }
     }
-    if(contador1 > contador2){return ele1;}
-    else{return ele2;}
+    //Se verifica que son mayoritarios 
+    if(contador1 > (b-a)/ 2){
+        return ele1;
+    }
+    else if(contador2 > (b-a)/2){
+        return ele2;
+        
+    }
+    return -1; //-1 sino  existe elemento mayoritario
 
 }
