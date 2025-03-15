@@ -54,13 +54,10 @@ void merge(int v[], int u[], int n, int m){
             w[i++] = u[k++];
         }
     }
-
-    
     for(int i = 0;i < n+m; ++i){
         v[i] = w[i];
     }
     free(w);
-
 }
 /**
  * @brief Ordenacion por metodo merguesort
