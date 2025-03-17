@@ -2,7 +2,7 @@
 /**
  * @file merguesort.c
  * @author Jose Luis Parrilla Fuentes (theparri@protonmail.com)
- * @brief 
+ * @brief Implementación del algoritmo mergesort
  * @version 0.1
  * @date 2025-02-26
  * 

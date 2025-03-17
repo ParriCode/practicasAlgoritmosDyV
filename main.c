@@ -5,7 +5,10 @@
 #include "algorithms/mergesort.h"
 #include "algorithms/ternaria.h"
 #include "algorithms/moreset.h"
+#include "algorithms/ejercicio4.h"
+#include "algorithms/ejercicio5.h"
 
+#include "imatriz2d/imatriz2d.h"
 extern int n0_ternaria;
 extern int n0_mergesort;
 
@@ -86,7 +89,7 @@ void prueba_ternaria(int tamPrueba, int ciclos, int umbral){
 }
 
 void prueba_moreset(int tamPrueba){
-    printf("Se va a iniciar la pru eba de moreset\n");
+    printf("Se va a iniciar la prueba de moreset\n");
     printf("Este algoritmo encuentra el elemento mayoritario el cual es estrictamente mayor que n/2\n");
     printf("El tamaño de la prueba será de %d elementos \n", tamPrueba);
     
@@ -117,7 +120,38 @@ void prueba_moreset(int tamPrueba){
     
    // printf("El tiempo ha sido de %f ", sumTiempos);
 }
+void prueba_sumaMM(){
+    printf("Se va a iniciar la prueba de la suma de elementos de un vector menos máximo y mínimo");
+    int v[8] =  {1,1,4,5,9,34,34,30};
+    int suma = sumaMM_clasico(v,0,8);
+    printf("El resultado de la suma es %d\n", suma);
 
+}
+/**
+ * 
+ */
+void prueba_matrizCEEV(){
+    printf("Se va a iniciar la prueba para contar los elementos de la matriz que está entre los valores dados");
+    imatriz2d m = icreamatriz2d(4,4);
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            m[i][j] = i * 4 + j; // Por ejemplo, llenar la matriz con valores secuenciales
+        }
+    }
+    printf("\n");
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%d ",m[i][j]); // Por ejemplo, llenar la matriz con valores secuenciales
+        }
+        printf("\n");
+    }
+    //printf("v = %d\n", &m);
+    printf("\n");
+    int s = suma_matriz_nxn_entre_valores(m, 4,0, 3,6);
+    printf("s = %d\n" ,  s);
+    ifreematriz2d(&m);
+    
+}
 int main(int argc , char *argv[]){
     int i = 0;
     int tam = 10000; // Tamaño de la prueb a
@@ -133,6 +167,37 @@ int main(int argc , char *argv[]){
         }
         if(strcmp(argv[i], "--all") == 0){
             printf("Se van a ejecutar pruebas de todos los algoritmos");
+        }else if(strcmp(argv[i],"-e")  == 0 ){
+            if(i < argc -1){
+                int ejercicio = atoi(argv[++i]);
+                printf("ejercicio = %d\n", ejercicio);
+                switch (ejercicio)
+                {
+                case 0:
+                    /* code */
+                    break;
+                case 1:
+                    prueba_merguesort(0,0,0);
+                    break;
+                case 2:
+                    prueba_ternaria(0,0,0);
+                    break;
+                case 3:
+                    prueba_moreset(0);
+                    break;
+                case 4:
+                    printf("SUMA\n");
+                    prueba_sumaMM();
+                    break;
+                case 5:
+                    prueba_matrizCEEV();
+                    break;
+
+                default:
+                    printf("ESTO NO FUFA");
+                    break;
+                }
+            }
         }
         else if(strcmp(argv[i] ,"--mergesort") == 0){
             if( i< argc-1){
@@ -153,6 +218,15 @@ int main(int argc , char *argv[]){
                 tam = atoi(argv[++i]);
             }
             prueba_moreset(tam);
+        }else if(strcmp(argv[i], "--sumaMM") == 0){
+            if(i < argc -1){
+                tam = atoi(argv[++i]);
+            }
+            prueba_sumaMM();
+        }else if(strcmp(argv[i], "--matrizEV") == 0){
+            if(i < argc -1){
+                tam = atoi(argv[++i]);
+            }
         }
 
         ++i; //incr iterador

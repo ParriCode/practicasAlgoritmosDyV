@@ -13,6 +13,8 @@ set(SOURCES
     algorithms/mergesort.c
     algorithms/ternaria.c
     algorithms/moreset.c
+    algorithms/ejercicio4.c
+    algorithms/ejercicio5.c
     disjoint/disjoint.c
   #  disjoint/prdisjoint.c
     fvector/fvector.c
@@ -33,6 +35,8 @@ set(HEADERS
     algorithms/mergesort.h
     algorithms/ternaria.h
     algorithms/moreset.h
+    algorithms/ejercicio4.h
+    algorithms/ejercicio5.h
     disjoint/disjoint.h
     fvector/fvector.h
     heap_aristas/depuracion.h
