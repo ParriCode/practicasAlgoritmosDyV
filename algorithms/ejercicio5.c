@@ -1,8 +1,7 @@
 /**
  * @file ejercicio5.c
  * @author Jose Luis Parrilla Fuentes (theparri@protonmail.com)
- * @brief Implementación de un algoritmo que calcula el sumatorio de los elementos de un vector sin tener en cuenta el 
- * máximo ni el mínimo
+ * @brief Algoritmo que calcula la cantidad de números dentro de una matriz que se encuentran entre dos valores dados 
  * @version 0.1
  * @date 2025-02-26
  * 
