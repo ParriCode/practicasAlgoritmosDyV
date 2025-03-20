@@ -16,6 +16,7 @@ set(SOURCES
     algorithms/ejercicio4.c
     algorithms/ejercicio5.c
     algorithms/ejercicio6.c
+    algorithms/ejercicio7.c
     disjoint/disjoint.c
   #  disjoint/prdisjoint.c
     fvector/fvector.c
@@ -39,6 +40,7 @@ set(HEADERS
     algorithms/ejercicio4.h
     algorithms/ejercicio5.h
     algorithms/ejercicio6.h
+    algorithms/ejercicio7.h
     disjoint/disjoint.h
     fvector/fvector.h
     heap_aristas/depuracion.h

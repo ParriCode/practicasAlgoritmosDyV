@@ -8,8 +8,11 @@
 #include "algorithms/ejercicio4.h"
 #include "algorithms/ejercicio5.h"
 #include "algorithms/ejercicio6.h"
+#include "algorithms/ejercicio7.h"
 
 #include "imatriz2d/imatriz2d.h"
+
+
 extern int n0_ternaria;
 extern int n0_mergesort;
 
@@ -166,6 +169,40 @@ void prueba_carrera_liquidos(){
     printf("El dorsal del corredor en la posición %d es: %d\n", posicion, resultado.dorsal);
     printf("La cantidad de agua llevada por el corredor es: %d\n", resultado.cantidad_agua);
 }
+void prueba_heap(){
+    int v1[10] = {20, 15, 10, 9, 8, 7, 6, 5, 10, 2}; // no es un heap
+    int v2[7] = {30, 20, 15, 10, 8, 5, 2};
+    int v3[6] = {10, 15, 20, 25, 30, 35}; // No es un heap
+    int v4[1] = {42}; // Caso borde: un solo elemento
+
+    printf("Prueba 1: ");
+    if (esHeap(v1, 10, 0)) {
+        printf("El arreglo v1 es un heap\n");
+    } else {
+        printf("El arreglo v1 no es un heap\n");
+    }
+
+    printf("Prueba 2: ");
+    if (esHeap(v2, 7, 0)) {
+        printf("El arreglo v2 es un heap\n");
+    } else {
+        printf("El arreglo v2 no es un heap\n");
+    }
+
+    printf("Prueba 3: ");
+    if (esHeap(v3, 6, 0)) {
+        printf("El arreglo v3 no es un heap\n");
+    } else {
+        printf("El arreglo v3 no es un heap\n");
+    }
+
+    printf("Prueba 4: ");
+    if (esHeap(v4, 1, 0)) {
+        printf("El arreglo v4 es un heap\n");
+    } else {
+        printf("El arreglo v4 no es un heap\n");
+    }
+}
 
 int main(int argc , char *argv[]){
     int i = 0;
@@ -210,6 +247,8 @@ int main(int argc , char *argv[]){
                 case 6:
                     prueba_carrera_liquidos();
                     break;
+                case 7:
+                    prueba_heap();
                 default:
                     printf("Opción no válida\n");
                     break;
@@ -247,6 +286,8 @@ int main(int argc , char *argv[]){
             prueba_matrizCEEV();
         }else if(strcmp(argv[i], "--carrera") == 0){
             prueba_carrera_liquidos();
+        } else if(strcmp(argv[i], "--heap") == 0){
+            prueba_heap();
         }
 
         ++i; // Incrementar iterador

@@ -27,7 +27,6 @@ int suma_matriz_nxn_entre_valores_clasico(imatriz2d v,int n,  int a, int b){
 }
 
 
-int i = 0;
 /**
  * @brief Sumar los elementos de una matriz entre2 valores
  * @param n tamaño de la matriz
