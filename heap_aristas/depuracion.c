@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "depuracion.h"
+#include <stdlib.h> // Agregado para declarar la función exit
 
 /** 	Este procediento es llamado por las primitivas de los TDAs cuando no se satisface alguna precondicin de las mismas.
 	@brief	Gestion de errores en comprobacin de precondiciones de primitivas de TDAs

@@ -7,6 +7,7 @@
 #include "algorithms/moreset.h"
 #include "algorithms/ejercicio4.h"
 #include "algorithms/ejercicio5.h"
+#include "algorithms/ejercicio6.h"
 
 #include "imatriz2d/imatriz2d.h"
 extern int n0_ternaria;
@@ -152,21 +153,35 @@ void prueba_matrizCEEV(){
     ifreematriz2d(&m);
     
 }
+
+void prueba_carrera_liquidos(){
+    printf("Se va a iniciar la prueba de los líquidos\n");
+    corredor corr[10] = {
+        {7, 575}, {3, 842}, {10, 27}, {1, 235},
+        {4, 970}, {6, 10}, {8, 1000}, {2, 624},
+        {5, 468}, {9, 580}
+    };
+    int posicion = 10; // Cambiar según la posición deseada
+    corredor resultado = corredor_mas_agua(corr, 0, 9, posicion);
+    printf("El dorsal del corredor en la posición %d es: %d\n", posicion, resultado.dorsal);
+    printf("La cantidad de agua llevada por el corredor es: %d\n", resultado.cantidad_agua);
+}
+
 int main(int argc , char *argv[]){
     int i = 0;
-    int tam = 10000; // Tamaño de la prueb a
-    int ciclos = 100; //ciclos que se repite la prueba
+    int tam = 10000; // Tamaño de la prueba
+    int ciclos = 100; // Ciclos que se repite la prueba
     int umbral = 100000; // Umbral por defecto
     while(i < argc){
 
-        if(strcmp(argv[i], "--help") == 0){ //ayuda
-            printf("Este proyecto se ha realizado para probar la complejidad de distintos algoritmos propuestos en la asignatura de \nDesarrollo de algoritmos del grado de ingeniería en ingenería informática de la universidad de Jaen\n");
-            printf("Author: Jose Luis Parrilla Fuentes");
-            printf("Version: 0.1");
-            printf("Usage: algortithm [ --all ] [--mergesort ]");
+        if(strcmp(argv[i], "--help") == 0){ // Ayuda
+            printf("Este proyecto se ha realizado para probar la complejidad de distintos algoritmos propuestos en la asignatura de \nDesarrollo de algoritmos del grado de ingeniería en ingeniería informática de la universidad de Jaen\n");
+            printf("Author: Jose Luis Parrilla Fuentes\n");
+            printf("Version: 0.1\n");
+            printf("Usage: algorithm [ --all ] [--mergesort ]\n");
         }
         if(strcmp(argv[i], "--all") == 0){
-            printf("Se van a ejecutar pruebas de todos los algoritmos");
+            printf("Se van a ejecutar pruebas de todos los algoritmos\n");
         }else if(strcmp(argv[i],"-e")  == 0 ){
             if(i < argc -1){
                 int ejercicio = atoi(argv[++i]);
@@ -177,13 +192,13 @@ int main(int argc , char *argv[]){
                     /* code */
                     break;
                 case 1:
-                    prueba_merguesort(0,0,0);
+                    prueba_merguesort(tam, ciclos, umbral);
                     break;
                 case 2:
-                    prueba_ternaria(0,0,0);
+                    prueba_ternaria(tam, ciclos, umbral);
                     break;
                 case 3:
-                    prueba_moreset(0);
+                    prueba_moreset(tam);
                     break;
                 case 4:
                     printf("SUMA\n");
@@ -192,9 +207,11 @@ int main(int argc , char *argv[]){
                 case 5:
                     prueba_matrizCEEV();
                     break;
-
+                case 6:
+                    prueba_carrera_liquidos();
+                    break;
                 default:
-                    printf("ESTO NO FUFA");
+                    printf("Opción no válida\n");
                     break;
                 }
             }
@@ -227,12 +244,14 @@ int main(int argc , char *argv[]){
             if(i < argc -1){
                 tam = atoi(argv[++i]);
             }
+            prueba_matrizCEEV();
+        }else if(strcmp(argv[i], "--carrera") == 0){
+            prueba_carrera_liquidos();
         }
 
-        ++i; //incr iterador
+        ++i; // Incrementar iterador
     }
     
     printf("Finiquitado\n");
-    //prueba_merguesort(10000,100);
     return  0;
 }
