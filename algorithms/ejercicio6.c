@@ -29,7 +29,7 @@ int abs(int n){
    * @param posicion 
    * @return Dorsal del corredor que más agua ha llevado dorsal = posicion dentro del vector
    */
-
+int iter = 0;
   corredor corredor_mas_agua(corredor *v, int a ,int b, int posicion){
     
     if(a == b ){
@@ -43,21 +43,19 @@ int abs(int n){
         int j = m+1;
         corredor aux[posicion];
         //merge de los arreglos hasta la posición indicada , como caa iteracción solo puede hacerse menor
-        while (k < posicion && (i <= m || j <= b)) {
-            if (i <= m && (j > b || v[i].cantidad_agua <= v[j].cantidad_agua)) {
+        while(k < posicion && ( i<= m || j <= b)){
+            if( i <= m && (v[i].cantidad_agua <= v[j].cantidad_agua || j > b) ){
                 aux[++k] = v[i++];
-            } else {
+            }else{
                 aux[++k] = v[j++];
             }
-            // Imprimir el corredor actual
         }
 
-        // Copiar la mezcla al arreglo original
-        for (int x = a, y = 0; x <= b; ++x, ++y) {
-            v[x] = aux[y];
-            // Imprimir el corredor actualizado
+        for(i = a , k  = 0; i <= b && k < posicion;++i,++k){
+            v[i] = aux[k];
+            ++iter;
         }
-
+   //     printf("%d, ", iter);
         return v[posicion - 1];
     }
     

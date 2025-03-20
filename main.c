@@ -161,7 +161,7 @@ void prueba_carrera_liquidos(){
         {4, 970}, {6, 10}, {8, 1000}, {2, 624},
         {5, 468}, {9, 580}
     };
-    int posicion = 10; // Cambiar según la posición deseada
+    int posicion = 5; // Cambiar según la posición deseada
     corredor resultado = corredor_mas_agua(corr, 0, 9, posicion);
     printf("El dorsal del corredor en la posición %d es: %d\n", posicion, resultado.dorsal);
     printf("La cantidad de agua llevada por el corredor es: %d\n", resultado.cantidad_agua);
